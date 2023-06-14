@@ -1,0 +1,32 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: xkubernetesclusters.k8s.starter.org
+spec:
+  writeConnectionSecretsToNamespace: upbound-system
+  compositeTypeRef:
+    apiVersion: k8s.starter.org/v1alpha1
+    kind: XKubernetesCluster
+  resources:
+    - base:
+        apiVersion: net.starter.org/v1alpha1
+        kind: XNetwork
+      patches:
+        - fromFieldPath: spec.id
+          toFieldPath: spec.id
+    - base:
+        apiVersion: azure.k8s.starter.org/v1alpha1
+        kind: XAKS
+      connectionDetails:
+        - fromConnectionSecretKey: kubeconfig
+      patches:
+        - fromFieldPath: spec.id
+          toFieldPath: spec.id
+        - fromFieldPath: spec.id
+          toFieldPath: spec.writeConnectionSecretToRef.name
+        - fromFieldPath: spec.writeConnectionSecretToRef.namespace
+          toFieldPath: spec.writeConnectionSecretToRef.namespace
+        - fromFieldPath: spec.parameters.nodes.count
+          toFieldPath: spec.parameters.nodes.count
+        - fromFieldPath: spec.parameters.nodes.size
+          toFieldPath: spec.parameters.nodes.size
