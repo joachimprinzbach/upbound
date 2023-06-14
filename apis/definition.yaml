@@ -3,7 +3,7 @@ kind: CompositeResourceDefinition
 metadata:
   name: xkubernetesclusters.k8s.starter.org
 spec:
-  group: azure.platformref.upbound.io
+  group: k8s.starter.org
   names:
     kind: XKubernetesCluster
     plural: xkubernetesclusters
