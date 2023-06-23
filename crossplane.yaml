@@ -18,5 +18,5 @@ spec:
   crossplane:
     version: ">=v1.7.0-0"
   dependsOn:
-    - provider: xpkg.upbound.io/upbound/provider-azure
-      version: v0.34.0-rc.0.13.g5c7711fa
+    - provider: xpkg.dev-deba7a0e.u6d.dev/upbound/provider-azure
+      version: v0.0.2-annotated
