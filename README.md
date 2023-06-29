@@ -14,9 +14,9 @@ A custom API in [Crossplane](https://docs.crossplane.io/v1.12/getting-started/in
 For this configuration, the AKS API is defined by:
 
 - a [KubernetesCluster](/apis/definition.yaml) type
-- the KubernetesCluster is composed of an [XNetwork](/apis/network/definition.yaml) and [XAKS](/apis/aks/definition.yaml) types.
-- the XNetwork is [composed](/apis/network/composition.yaml) of a the following resources: a VPC, InternetGateway, 4 Subnets, a RouteTable, Routes, 5 RouteTableAssociations, a SecurityGroup, and 2 security group role.
-- the XAKS is [composed](/apis/aks/composition.yaml) of the following resources: Cluster, a NodeGroup, an OpenIDConnectProvider, 2 Roles, 4 RolePolicyAttachments, and ClusterAuth.
+- the KubernetesCluster is [composed](/apis/composition.yaml) of an [XNetwork](/apis/network/definition.yaml) and [XAKS](/apis/aks/definition.yaml) types.
+- the XNetwork is [composed](/apis/network/composition.yaml) of a the following resources: a ResourceGroup, a VirtualNetwork, and 1 Subnet.
+- the XAKS is [composed](/apis/aks/composition.yaml) of the following resources: a KubernetesCluster.
 
 This repository also contains an [example claim](/.up/examples/cluster.yaml). You can apply this file on your control plane to invoke the AKS API and cause a cluster to be created.
 
@@ -24,7 +24,7 @@ This repository also contains an [example claim](/.up/examples/cluster.yaml). Yo
 
 This repository is a starting point. You should be feel encouraged to:
 
-1) create new API definitions in this same repo
-2) tweak the existing API definition for AKS to your needs
+1. create new API definitions in this same repo
+2. tweak the existing API definition for AKS to your needs
 
 Upbound will automatically detect the commits you make in your repo and build the configuration package for you. To learn more about how to build APIs for your managed control planes in Upbound, read the guide on [Upbound's docs](https://docs.upbound.io).
