@@ -1,26 +1,29 @@
 apiVersion: meta.pkg.crossplane.io/v1alpha1
 kind: Configuration
 metadata:
-  name: configuration-aks
+  name: configuration-azure-aks
   annotations:
-    meta.crossplane.io/maintainer: The Getting Started Organization <support@starter.org>
-    meta.crossplane.io/source: github.com/upbound/configuration-aks
+    meta.crossplane.io/maintainer: Upbound <support@upbound.io>
+    meta.crossplane.io/source: github.com/upbound/configuration-azure-aks
     meta.crossplane.io/license: Apache-2.0
     meta.crossplane.io/description: |
-      This Azure starter configuration offers Kubernetes Clusters backed by AKS.
+      Azure AKS Configuration is reusable Configuration designed to be primarily used in higher level Configurations.
     meta.crossplane.io/readme: |
-      This Configuration bundles an API definition. The API will 
-      allow control planes to provision fully
-      configured Azure Kubernetes Service (AKS) clusters, composed
-      using cloud service primitives from the [Upbound Official Azure
-      Provider family](https://marketplace.upbound.io/providers/upbound/provider-family-azure).
+      This configuration bundles an Upbound Cloud extension and an API definition. This API allows control planes to provision Azure AKS clusters, composed using cloud service primitives from the Upbound Official Providers
+
 spec:
   crossplane:
-    version: ">=v1.12.0"
+    version: ">=v1.14.1-0"
   dependsOn:
-    - provider: xpkg.upbound.io/upbound/provider-family-azure
-      version: ">=v0.34.0"
     - provider: xpkg.upbound.io/upbound/provider-azure-containerservice
-      version: ">=v0.34.0"
-    - provider: xpkg.upbound.io/upbound/provider-azure-network
-      version: ">=v0.34.0"
+      # renovate: datasource=github-releases depName=upbound/provider-azure
+      version: "v0.42.1"
+    - configuration: xpkg.upbound.io/upbound/configuration-azure-network
+      # renovate: datasource=github-releases depName=upbound/configuration-azure-network
+      version: "v0.7.0"
+    - provider: xpkg.upbound.io/crossplane-contrib/provider-helm
+      # renovate: datasource=github-releases depName=crossplane-contrib/provider-helm
+      version: "v0.16.0"
+    - provider: xpkg.upbound.io/crossplane-contrib/provider-kubernetes
+      # renovate: datasource=github-releases depName=crossplane-contrib/provider-kubernetes
+      version: "v0.11.4"
